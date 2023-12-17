@@ -25,12 +25,12 @@ export default async function Login(req: NextApiRequest, res: NextApiResponse) {
             }
 
             // Generate a token for the logged in user
-            const token = jwt.sign({ id: participant._id }, 'your-secret-key');
+            const token = jwt.sign({ id: participant._id }, 'secret');
 
             await disconnect();
 
             res.status(200).json({ message: 'Login successful', token });
-        } catch (err) {
+        } catch (err: any) {
             console.error(err);
             await disconnect();
             res.status(500).json({ message: 'Login failed', error: err.message });

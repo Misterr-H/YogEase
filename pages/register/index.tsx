@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 
 const Register = () => {
@@ -16,11 +18,16 @@ const Register = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
         if (Number(form.age) < 18 || Number(form.age) > 65) {
             setError('Age must be between 18 and 65.');
+            return;
+        }
+
+        if (form.password.length < 6) {
+            setError('Password must be at least 6 characters long.');
             return;
         }
 
@@ -29,8 +36,28 @@ const Register = () => {
             return;
         }
 
-        // Here you can handle the form submission.
-        // For example, you can send a request to your server with the form data.
+        // Make a POST request to the /api/register endpoint with the form data
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(form),
+        });
+
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+
+        if (response.ok) {
+            // Registration was successful
+            // You can redirect the user to the login page or to the home page
+            // For now, let's just log the success message
+            console.log(data.message);
+        } else {
+            // Registration failed
+            // Display the error message
+            setError(data.message);
+        }
     };
 
     return (
@@ -57,9 +84,9 @@ const Register = () => {
                     className="block w-full mb-4 p-2 border border-gray-300 rounded text-black"
                 >
                     <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                 </select>
                 <input
                     type="email"

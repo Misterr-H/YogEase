@@ -13,6 +13,10 @@ export default async function Register(req: NextApiRequest, res: NextApiResponse
             return res.status(400).json({ message: 'Age must be between 18 and 65.' });
         }
 
+        if (password.length < 6) {
+            return res.status(400).json({ message: 'Password must be at least 6 characters long.' });
+        }
+
         // Validate the passwords
         if (password !== confirmPassword) {
             return res.status(400).json({ message: 'Passwords do not match.' });
@@ -28,10 +32,10 @@ export default async function Register(req: NextApiRequest, res: NextApiResponse
             await disconnect();
 
             // Generate a token for the new participant
-            const token = jwt.sign({ id: participant._id }, 'your-secret-key');
+            const token = jwt.sign({ id: participant._id }, 'secret');
 
             res.status(200).json({ message: 'Registration successful', token });
-        } catch (err) {
+        } catch (err: any) {
             console.error(err);
             await disconnect();
             res.status(500).json({ message: 'Registration failed', error: err.message });

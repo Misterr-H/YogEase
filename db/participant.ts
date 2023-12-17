@@ -8,8 +8,9 @@ const participantSchema = new mongoose.Schema({
     gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
     contactDetails: { type: String },
     enrollmentDate: { type: Date, default: Date.now },
+    batch: { type: mongoose.Schema.Types.ObjectId, ref: 'Batch' },
 });
 
-const Participant = mongoose.model('Participant', participantSchema);
+const Participant = mongoose.models.Participant ?? mongoose.model('Participant', participantSchema);
 
 export default Participant;
