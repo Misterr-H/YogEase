@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Navbar from "@/components/Navbar";
-import {router} from "next/client";
+import {router} from "next/router";
 
 const Dashboard = () => {
     useEffect(() => {
