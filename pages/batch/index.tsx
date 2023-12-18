@@ -9,7 +9,7 @@ const Batches = () => {
         setLoading(true);
         fetch('/api/fetch-batches')
             .then(response => response.json())
-            .then(data => {
+            .then((data: any) => {
                 setBatches(data.batches);
                 setLoading(false);
             });
@@ -21,7 +21,7 @@ const Batches = () => {
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                batches.map((batch) => (
+                batches.map((batch: any) => (
                     <div key={batch._id} className="flex flex-col items-center justify-center mb-4 p-4 border border-gray-300 rounded">
                         <h2 className="text-2xl font-bold mb-2">{batch.name}</h2>
                         <p className="mb-2">Timing: {batch.timeSlot}</p>
