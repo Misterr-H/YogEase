@@ -18,6 +18,10 @@ const Home = () => {
                     >
                         Get Started
                     </Link>
+                    <Link href="/login" className="px-5 py-3 font-bold text-white border-2 border-blue-600 ml-5 rounded hover:bg-blue-700"
+                    >
+                        Login
+                    </Link>
                 </div>
             </div>
         </div>
