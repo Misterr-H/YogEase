@@ -4,6 +4,7 @@ const uri = "mongodb+srv://cordadmin:VikasOP@cluster0.inyvrgo.mongodb.net/yogeas
 
 async function connect() {
     try {
+        // @ts-ignore
         await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
         console.log('Connected to MongoDB');
     } catch (err) {
