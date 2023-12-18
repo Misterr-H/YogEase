@@ -11,7 +11,7 @@ const YourClass = () => {
 
     useEffect(() => {
         const userDetails = localStorage.getItem("userDetails");
-        const timeSlot = JSON.parse(userDetails).batch.timeSlot;
+        const timeSlot = JSON.parse(userDetails as string).batch.timeSlot;
 
         const dayToAdd = () => {
             if(moment(timeSlot, 'HH:mm').isBefore(moment(), 'hour')){

@@ -10,7 +10,7 @@ export default async function FetchTransactionHistory(req: NextApiRequest, res: 
             if (!token) {
                 return res.status(401).json({ message: 'Unauthorized' });
             }
-            const decodedToken = jwt.verify(token, 'secret');
+            const decodedToken: any = jwt.verify(token, 'secret');
             if (!decodedToken) {
                 return res.status(401).json({ message: 'Unauthorized' });
             }

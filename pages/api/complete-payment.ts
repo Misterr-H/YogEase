@@ -15,7 +15,7 @@ export default async function CompletePayment(req: NextApiRequest, res: NextApiR
         }
 
         try {
-            const decoded = jwt.verify(token as string, 'secret');
+            const decoded: any = jwt.verify(token as string, 'secret');
             const userId = decoded.id;
 
             await connect();

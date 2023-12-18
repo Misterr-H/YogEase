@@ -12,7 +12,7 @@ export default async function FetchUser(req: NextApiRequest, res: NextApiRespons
         }
 
         try {
-            const decoded = jwt.verify(token, 'secret');
+            const decoded: any = jwt.verify(token, 'secret');
             const userId = decoded.id;
 
             await connect();

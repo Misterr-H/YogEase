@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 const Payment = () => {
     const router = useRouter();
-    const [batch, setBatch] = useState(null);
+    const [batch, setBatch] = useState<any>(null);
     const [laoding, setLoading] = useState(false);
     const [form, setForm] = useState({
         cardNumber: '',
@@ -26,7 +26,7 @@ const Payment = () => {
         }
     }, [router.query.batchId]);
 
-    const handlePayment = async (e) => {
+    const handlePayment = async (e: any) => {
         e.preventDefault();
         if (form.cardNumber.length < 19) {
             setError('Invalid Card Number');
@@ -65,12 +65,12 @@ const Payment = () => {
 
             // Redirect to success page
             router.push('/success');
-        } catch (error) {
+        } catch (error: any) {
             setError(error.message);
         }
     };
 
-    const expiryDateFormatter = (value) => {
+    const expiryDateFormatter = (value: any) => {
         const input = value.replace(/\D/g, '').substring(0, 4);
         const parts = [];
 
@@ -88,12 +88,12 @@ const Payment = () => {
         return parts.join('/');
     }
 
-    const CVVFormatter = (value) => {
+    const CVVFormatter = (value: any) => {
         setForm({ ...form, cvv: value.replace(/\D/g, '').substring(0, 3) });
         return value.replace(/\D/g, '').substring(0, 3);
     }
 
-    const CardNumberFormatter = (value) => {
+    const CardNumberFormatter = (value: any) => {
         setForm({ ...form, cardNumber: value.replace(/\D/g, '').substring(0, 16).replace(/(.{4})/g, '$1 ').trim() });
         return value.replace(/\D/g, '').substring(0, 16).replace(/(.{4})/g, '$1 ').trim();
     }

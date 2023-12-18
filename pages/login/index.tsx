@@ -9,11 +9,11 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
         setLoading(true);
 
@@ -79,7 +79,7 @@ const Login = () => {
                 />
                 {error && <p className="text-red-500">{error}</p>}
                 <p className="mb-4">
-                    Don't have an account?{' '}
+                    Don&apos;t have an account?{' '}
                     <Link href="/register" className="text-blue-600">
                         Register here.
                     </Link>

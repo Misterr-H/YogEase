@@ -36,7 +36,7 @@ const TransactionHistory = () => {
                 {loading ? (
                     <p className="text-lg text-gray-500">Loading...</p>
                 ) : transactions.length > 0 ? (
-                    transactions.map((transaction, index) => (
+                    transactions.map((transaction: any, index) => (
                         <div key={index} className="bg-white shadow rounded-lg p-6 mb-6">
                             <h2 className="text-2xl text-black font-bold mb-4">Transaction {index + 1}</h2>
                             <p className="text-lg text-gray-600">Batch Name: {transaction.batch.name}</p>
